@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 const path = require("path");
 const cors = require("cors"); // 引入 cors 模块
-const port = 3000;
+// const port = 3000;
 
 const { spawn } = require('child_process');
 
@@ -26,7 +26,7 @@ app.all("*", function (req, res, next) {
   req.method == "OPTIONS" ? res.send(200) : next();
 });
 
-app.use(express.static(path.join(__dirname, "")));
+app.use(express.static(path.join(__dirname, 'frontend/hardhat-frontend/dist')));
 
 const startHardhat = () => {
     const hardhatTask = spawn('npx hardhat run scripts/deploy.js', { shell: true });
@@ -100,8 +100,9 @@ startHardhat();
 // runMain();
 
 
-
+// 启动服务器并监听端口
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log("Server started on port  3000 端口!");
+  console.log(`Server is running on port ${port}`);
 });
