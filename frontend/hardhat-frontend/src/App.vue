@@ -15,7 +15,7 @@
   font: inherit;
   vertical-align: baseline;
 }
-body {
+/* body {
   margin: 0;
   padding: 0;
   font-size: 100%;
@@ -23,5 +23,5 @@ body {
   line-height: inherit;
   color: inherit;
   background-color: transparent;
-}
+} */
 </style>

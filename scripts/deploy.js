@@ -27,6 +27,7 @@ const main = async () => {
 
   const provider = await new hre.ethers.WebSocketProvider(quicknodeUrl);
   const signer = await new hre.ethers.Wallet(privateKey, provider);
+  console.log("signer:",signer);
 
   // 合约地址和 ABI
   const contractAddress = "0xFF493C8C490282d543eCcD5b08079BE52972207A";
