@@ -6,6 +6,7 @@ module.exports = {
   solidity: "0.8.19",
   networks: {
     avatar: {
+      ensAddress: null, // 禁用 ENS
       url: `"https://evmrpc.testnet.bianjie.ai"`,
       accounts: ['0x21d790f08179b8b516864211957ae9eb82a621c27361b74ce9802eff3939946d'],
       chainId:12231,

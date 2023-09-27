@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        .carousel-list {
+            display: flex;
+            margin-top: 40vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-item {
+            position: absolute;
+            /* max-width: 800px; */
+            margin: 0 auto;
+            width: 500px;
+            height: 500px;
+        }
+
+
+
+        img {
+            width: 100%;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel-list">
+
+        <img class="carousel-item" src="./src/assets/img/swiper1.png" alt="Image 1">
+
+
+        <img class="carousel-item" src="./src/assets/img/swiper2.png" alt="Image 2">
+
+
+        <img class="carousel-item" src="./src/assets/img/swiper3.png" alt="Image 3">
+
+
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <script>
+        const items = document.querySelectorAll(".carousel-item");
+        let index = 1;
+        layout();
+
+        function layout() {
+
+
+            const xOffsetStep = 100;//轮播图间隔
+            const count = items.length;//轮播图数量
+            const scaleStep = 0.6;//缩放倍率
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                const sign = Math.sign(i - index);
+                let xOffset = (i - index) * xOffsetStep;
+                if (i !== index) {
+                    xOffset = xOffset + 100 * sign;
+                }
+
+
+                const scale = scaleStep ** Math.abs(i - index);
+                const rotateY = i === index ? 0 : 45 * -sign;
+                item.style.transform = `translateX(${xOffset}px) scale(${scale}) rotateY(${rotateY}deg)`;
+                item.style.zIndex = count - Math.abs(index - i);
+            }
+        }
+
+        const prev = document.querySelector(".prev");
+        const next = document.querySelector(".next");
+        prev.addEventListener("click", () => {
+            index--;
+            if (index < 0) {
+                index = 0;
+            }
+            layout();
+        })
+        next.addEventListener("click", () => {
+            index++;
+            if (index > items.length - 1) {
+                index = items.length - 1;
+            }
+            layout();
+        })
+
+        items.forEach((item, i) => {
+            item.addEventListener("click", () => {
+                index = i;
+                layout();
+            })
+        })
+
+
+
+
+
+    </script>
+</body>
+
+</html>

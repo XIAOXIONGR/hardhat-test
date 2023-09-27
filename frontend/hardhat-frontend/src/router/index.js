@@ -6,7 +6,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    redirect: "GameHome",
+    redirect: "/GameHome",
   },
 
   {
@@ -16,6 +16,18 @@ const routes = [
   {
     path: "/GameHome",
     component: () => import("../views/GameHome.vue"),
+  },
+  {
+    path: "/HomeView",
+    component: () => import("../views/HomeView.vue"),
+  },
+  {
+    path: "/swiper",
+    component: () => import("../views/swiper.vue"),
+  },
+  {
+    path: "/swiper2",
+    component: () => import("../views/swiper2.vue"),
   },
 //   {
 //     path: "/detail/:n",
@@ -28,7 +40,7 @@ const routes = [
 
 // 创建路由
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory("/frontend/"),
   routes,
 });
 
